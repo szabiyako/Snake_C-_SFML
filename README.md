@@ -3,4 +3,6 @@
 https://www.sfml-dev.org/index.php
 
 ## Changes
-* added to GitHub
+* added Records
+* fixed bug with no Walls game
+* some visual adds

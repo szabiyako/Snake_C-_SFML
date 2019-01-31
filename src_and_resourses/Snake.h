@@ -162,11 +162,11 @@ bool Snake::stepNoWalls(Fruit &f, sf::Sound &s)
 
 	if (pos.x < 19)
 	{
-		pos.x = 580;
+		pos.x = 560;
 	}
 	else if (pos.y < 19)
 	{
-		pos.y = 580;
+		pos.y = 560;
 	}
 	else if (pos.x > 579)
 	{
