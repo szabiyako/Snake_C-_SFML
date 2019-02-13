@@ -50,11 +50,11 @@ template <class T> List<T>::List(T Content)
 
 template <class T> List<T>::~List()
 {
-	while (head != nullptr)          //Пока по адресу не пусто
+	while (head != nullptr)
 	{
-		Node<T> *temp = head->Next;   //Временная переменная для хранения адреса следующего элемента
-		delete head;                //Освобождаем адрес обозначающий начало
-		head = temp;                //Меняем адрес на nullptr
+		Node<T> *temp = head->Next;
+		delete head;
+		head = temp;
 	}
 }
 
@@ -194,15 +194,15 @@ template <class T> void List<T>::print(std::ostream& output)
 
 template <class T> void List<T>::input(std::istream& input, std::ostream& output)
 {
-	output << "Введите длину списка >";
+	output << "Insert List length >";
 	int l;
 	input >> l;
-	output << "Вводите элементы по порядку:" << std::endl;
+	output << "Input Elements:" << std::endl;
 	output << "----------------------------" << std::endl;
 	for (int i = 0; i < l; i++)
 	{
 		T temp;
-		output << i + 1 << "-ый элемент >";
+		output << i + 1 << " element >";
 		input >> temp;
 		pushBack(temp);
 	}

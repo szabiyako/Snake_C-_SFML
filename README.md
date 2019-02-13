@@ -2,7 +2,8 @@
 
 https://www.sfml-dev.org/index.php
 
-## Changes
-* added Records
-* fixed bug with no Walls game
-* some visual adds
+## Changes v 1.8
+* added Pause
+* added locales support
+* include dll in exe
+* some files dependencies update

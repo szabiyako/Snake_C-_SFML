@@ -44,7 +44,7 @@ Snake::Snake(sf::Sprite h, sf::Sprite t, int x, int y)
 
 void Snake::ChangeRotation(int r)
 {
-	//Íå äà¸ò ğàçâåğíóòüñÿ íà 180 ãğàäóñîâ
+	//Check back rotation
 	if (oldr == 0 && r == 2)
 		return;
 	if (oldr == 1 && r == 3)
@@ -121,21 +121,16 @@ bool Snake::stepWalls(Fruit &f, sf::Sound &s)
 	tail.pushFront(old);
 	if (isTouchTail())
 	{
-		clog << "ÂÛ ÏĞÎÈÃĞÀËÈ ÓÄÀĞÈÂØÈÑÜ ÎÁ ÕÂÎÑÒ!" << endl;
-		clog << endl << "Âñåãî î÷êîâ: " << count;
 		return false; //Game Over
 	}
 	else if (isOutsideBox(19, 19, 579, 579))
 	{
-		clog << "ÓÄÀĞ ÎÁ ÑÒÅÍÊÓ ÓĞÎÂÍß!" << endl;
-		clog << endl << "Âñåãî î÷êîâ: " << count;
 		return false; //Game Over
 	}
 	else if (isTouchFruit(f))
 	{
 		s.play();
 		count++;
-		clog << "ÂÇßÒ ÔĞÓÊÒ: " << count << endl;
 		f.spawn();
 	}
 	else
@@ -179,15 +174,12 @@ bool Snake::stepNoWalls(Fruit &f, sf::Sound &s)
 
 	if (isTouchTail())
 	{
-		clog << "ÂÛ ÏĞÎÈÃĞÀËÈ ÓÄÀĞÈÂØÈÑÜ ÎÁ ÕÂÎÑÒ!" << endl;
-		clog << endl << "Âñåãî î÷êîâ: " << count;
 		return false; //Game Over
 	}
 	else if (isTouchFruit(f))
 	{
 		s.play();
 		count++;
-		clog << "ÂÇßÒ ÔĞÓÊÒ: " << count << endl;
 		f.spawn();
 	}
 	else

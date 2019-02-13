@@ -6,8 +6,8 @@
 #include "Settings.h"
 #include "Walls.h"
 
-//Name and version
-#define NAME L"Змейка v1.7"
+//#include "String_Ru.h"
+#include "String_En.h"
 
 //true - play
 //false - exit
@@ -17,10 +17,10 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 	wall.setFillColor(sf::Color::Cyan);
 
 	sf::Font font;
-	if (!font.loadFromFile("arial.ttf"))
+	if (!font.loadFromFile("resources/fonts/arial.ttf"))
 	{
 		// error...
-		cerr << "Error : not founded \"arial.ttf\"";
+		cerr << "Error : not founded \"resources/fonts/arial.ttf\"";
 		return 1;
 	}
 
@@ -84,16 +84,16 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 	};
 
 	//Main menu
-	Button play(sf::Vector2f(200.f, 100.f), sf::Color::Black, L"Играть", sf::Color::White, 62, font);
+	Button play(sf::Vector2f(200.f, 100.f), sf::Color::Black, PLAY, sf::Color::White, 62, font);
 	play.SetPos(sf::Vector2f(200.f, 200.f));
 
-	Button sett(sf::Vector2f(200.f, 100.f), sf::Color::Black, L"Настройки", sf::Color::White, 40, font);
+	Button sett(sf::Vector2f(200.f, 100.f), sf::Color::Black, SETTINGS, sf::Color::White, 40, font);
 	sett.SetPos(sf::Vector2f(200.f, 350.f));
 
-	Button exit(sf::Vector2f(200.f, 100.f), sf::Color::Black, L"Выход", sf::Color::White, 62, font);
+	Button exit(sf::Vector2f(200.f, 100.f), sf::Color::Black, EXIT, sf::Color::White, 62, font);
 	exit.SetPos(sf::Vector2f(200.f, 480.f));
 
-	Button record(sf::Vector2f(150.f, 100.f), sf::Color::Black, L"Рекорды", sf::Color::White, 35, font);
+	Button record(sf::Vector2f(150.f, 100.f), sf::Color::Black, RECORDS, sf::Color::White, 35, font);
 	record.SetPos(sf::Vector2f(425.f, 350.f));
 
 	sf::Text title;
@@ -111,35 +111,30 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 	//!Main menu
 
 	//Settings
-	Button easy(sf::Vector2f(100.f, 100.f), sf::Color::Black, L"Легко", sf::Color::White, 20, font);
+	Button easy(sf::Vector2f(100.f, 100.f), sf::Color::Black, EASY, sf::Color::White, 20, font);
 	easy.SetPos(sf::Vector2f(50.f, 140.f));
 
-	Button medium(sf::Vector2f(100.f, 100.f), sf::Color::Black, L"Средне", sf::Color::Green, 20, font);
+	Button medium(sf::Vector2f(100.f, 100.f), sf::Color::Black, MEDIUM, sf::Color::Green, 20, font);
 	medium.SetPos(sf::Vector2f(250.f, 140.f));
 
-	Button hard(sf::Vector2f(100.f, 100.f), sf::Color::Black, L"Тяжело", sf::Color::White, 20, font);
+	Button hard(sf::Vector2f(100.f, 100.f), sf::Color::Black, HARD, sf::Color::White, 20, font);
 	hard.SetPos(sf::Vector2f(450.f, 140.f));
 
 
-	Button walls(sf::Vector2f(200.f, 100.f), sf::Color::Black, L"Стены убивают", sf::Color::Green, 20, font);
+	Button walls(sf::Vector2f(200.f, 100.f), sf::Color::Black, WALLS, sf::Color::Green, 20, font);
 	walls.SetPos(sf::Vector2f(50.f, 350.f));
 
-	Button nowalls(sf::Vector2f(200.f, 100.f), sf::Color::Black, L"Стены не убивают", sf::Color::White, 20, font);
+	Button nowalls(sf::Vector2f(200.f, 100.f), sf::Color::Black, NO_WALLS, sf::Color::White, 20, font);
 	nowalls.SetPos(sf::Vector2f(350.f, 350.f));
 
-	Button back_sett(sf::Vector2f(200.f, 100.f), sf::Color::Black, L"Назад", sf::Color::White, 62, font);
+	Button back_sett(sf::Vector2f(200.f, 100.f), sf::Color::Black, BACK, sf::Color::White, 62, font);
 	back_sett.SetPos(sf::Vector2f(200.f, 480.f));
 
 	sf::Text title_sett;
-	// select the font
-	title_sett.setFont(font); // font is a sf::Font
-	// set the string to display
-	title_sett.setString(L"Настройки");
-	// set the character size
-	title_sett.setCharacterSize(80); // in pixels, not points!
-	// set the color
+	title_sett.setFont(font);
+	title_sett.setString(SETTINGS);
+	title_sett.setCharacterSize(80);
 	title_sett.setFillColor(sf::Color::Black);
-	// set the text style
 	title_sett.setStyle(sf::Text::Bold | sf::Text::Underlined);
 	title_sett.setPosition(sf::Vector2f(80.f, 2.f));
 	//!Settings
@@ -148,7 +143,7 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 	//Records
 	sf::Text title_rec;
 	title_rec.setFont(font);
-	title_rec.setString(L"Рекорды");
+	title_rec.setString(RECORDS);
 	title_rec.setCharacterSize(80);
 	title_rec.setFillColor(sf::Color::Black);
 	title_rec.setStyle(sf::Text::Bold | sf::Text::Underlined);
@@ -156,7 +151,7 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 
 	sf::Text wall_rec;
 	wall_rec.setFont(font);
-	wall_rec.setString(L"Стены убивают|");
+	wall_rec.setString(WALLS);
 	wall_rec.setCharacterSize(35);
 	wall_rec.setFillColor(sf::Color::Black);
 	wall_rec.setStyle(sf::Text::Bold);
@@ -164,7 +159,7 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 
 	sf::Text nowall_rec;
 	nowall_rec.setFont(font);
-	nowall_rec.setString(L"Стены безвредны");
+	nowall_rec.setString(NO_WALLS);
 	nowall_rec.setCharacterSize(35);
 	nowall_rec.setFillColor(sf::Color::Black);
 	nowall_rec.setStyle(sf::Text::Bold);
@@ -172,7 +167,7 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 
 	sf::Text easy_rec;
 	easy_rec.setFont(font);
-	easy_rec.setString(L":Легко:");
+	easy_rec.setString(EASY);
 	easy_rec.setCharacterSize(35);
 	easy_rec.setFillColor(sf::Color::Black);
 	easy_rec.setStyle(sf::Text::Bold);
@@ -180,7 +175,7 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 
 	sf::Text medium_rec;
 	medium_rec.setFont(font);
-	medium_rec.setString(L":Средне:");
+	medium_rec.setString(MEDIUM);
 	medium_rec.setCharacterSize(35);
 	medium_rec.setFillColor(sf::Color::Black);
 	medium_rec.setStyle(sf::Text::Bold);
@@ -188,7 +183,7 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 
 	sf::Text hard_rec;
 	hard_rec.setFont(font);
-	hard_rec.setString(L":Тяжело:");
+	hard_rec.setString(HARD);
 	hard_rec.setCharacterSize(35);
 	hard_rec.setFillColor(sf::Color::Black);
 	hard_rec.setStyle(sf::Text::Bold);
@@ -422,50 +417,109 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 //return 0 - exit GO
 int game(sf::RenderWindow &window, Settings& settings)
 {
+	struct Button
+	{
+		sf::RectangleShape body;
+		sf::Text text;
+		sf::Font font;
+		Button(sf::Vector2f v, sf::Color c, const sf::String s, sf::Color tc, int size, sf::Font& font)
+		{
+			this->font = font;
+			body.setSize(v);
+			body.setFillColor(c);
+			text.setFont(font);
+			text.setString(s);
+			text.setFillColor(tc);
+			text.setCharacterSize(size);
+		}
+		void SetPos(sf::Vector2f vb, sf::Vector2f vt)
+		{
+			body.setPosition(vb);
+			text.setPosition(vt);
+		}
+		void SetPos(sf::Vector2f vb)
+		{
+			body.setPosition(vb);
+			sf::FloatRect temp = text.getLocalBounds();
+			float h = temp.height; // |
+			float w = temp.width;  // -
+			sf::Vector2f point1 = body.getPosition();
+			sf::Vector2f point2 = body.getPosition() + body.getSize();
+			float hb = point2.y - point1.y;
+			float wb = point2.x - point1.x;
+			float moveX = (wb - w) / 3;
+			float moveY = (hb - h) / 3;
+			text.setPosition(sf::Vector2f(moveX + vb.x, moveY + vb.y));
+		}
+		void render(sf::RenderWindow &window)
+		{
+			window.draw(body);
+			window.draw(text);
+		}
+		bool isMouseOn(sf::RenderWindow &window)
+		{
+			sf::Vector2i mouse = sf::Mouse::getPosition(window);
+
+			sf::Vector2f point1 = body.getPosition();
+			sf::Vector2f point2 = body.getPosition() + body.getSize();
+
+			if (mouse.x >= point1.x && mouse.y >= point1.y &&
+				mouse.x <= point2.x && mouse.y <= point2.y)
+				return true;
+			return false;
+		}
+		bool isMousePressed(sf::RenderWindow &window)
+		{
+			if (isMouseOn(window) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				return true;
+			return false;
+		}
+	};
+
 	sf::Font font;
-	if (!font.loadFromFile("arial.ttf"))
+	if (!font.loadFromFile("resources/fonts/arial.ttf"))
 	{
 		// error...
-		cerr << "Error : not founded \"arial.ttf\"";
+		cerr << "Error : not founded \"resources/fonts/arial.ttf\"";
 		return 1;
 	}
 
 	//LOAD TEXTURES AND SPRITES
 	sf::Texture thead;
-	if (!thead.loadFromFile("thead.png"))
+	if (!thead.loadFromFile("resources/textures/thead.png"))
 	{
 		// error...
-		cerr << "Error : not founded \"thead.png\"";
+		cerr << "Error : not founded \"resources/textures/thead.png\"";
 		return 1;
 	}
 	sf::Sprite shead;
 	shead.setTexture(thead);
 
 	sf::Texture ttail;
-	if (!ttail.loadFromFile("ttail.png"))
+	if (!ttail.loadFromFile("resources/textures/ttail.png"))
 	{
 		// error...
-		cerr << "Error : not founded \"ttail.png\"";
+		cerr << "Error : not founded \"resources/textures/ttail.png\"";
 		return 1;
 	}
 	sf::Sprite stail;
 	stail.setTexture(ttail);
 
 	sf::Texture twall;
-	if (!twall.loadFromFile("twall.png"))
+	if (!twall.loadFromFile("resources/textures/twall.png"))
 	{
 		// error...
-		cerr << "Error : not founded \"twall.png\"";
+		cerr << "Error : not founded \"resources/textures/twall.png\"";
 		return 1;
 	}
 	sf::Sprite swall;
 	swall.setTexture(twall);
 
 	sf::Texture tfruit;
-	if (!tfruit.loadFromFile("tfruit.png"))
+	if (!tfruit.loadFromFile("resources/textures/tfruit.png"))
 	{
 		// error...
-		cerr << "Error : not founded \"tfruit.png\"";
+		cerr << "Error : not founded \"resources/textures/tfruit.png\"";
 		return 1;
 	}
 	sf::Sprite sfruit;
@@ -474,19 +528,19 @@ int game(sf::RenderWindow &window, Settings& settings)
 
 	//LOAD SOUND
 	sf::SoundBuffer bfruit;
-	if (!bfruit.loadFromFile("bfruit.wav"))
+	if (!bfruit.loadFromFile("resources/sounds/bfruit.wav"))
 	{
 		// error...
-		cerr << "Error : not founded \"bfruit.wav\"";
+		cerr << "Error : not founded \"resources/sounds/bfruit.wav\"";
 	}
 	sf::Sound sound_fruit;
 	sound_fruit.setBuffer(bfruit);
 
 	sf::SoundBuffer bGO;
-	if (!bGO.loadFromFile("bgameover.wav"))
+	if (!bGO.loadFromFile("resources/sounds/bgameover.wav"))
 	{
 		// error...
-		cerr << "Error : not founded \"bgameover.wav\"";
+		cerr << "Error : not founded \"resources/sounds/bgameover.wav\"";
 	}
 	sf::Sound sound_GO;
 	sound_GO.setBuffer(bGO);
@@ -508,7 +562,7 @@ int game(sf::RenderWindow &window, Settings& settings)
 	//Score:
 	sf::Text score;
 	score.setFont(font);
-	score.setString(L"Количество очков:");
+	score.setString(SCORE);
 	score.setCharacterSize(40);
 	score.setFillColor(sf::Color::White);
 	score.setStyle(sf::Text::Bold);
@@ -537,8 +591,72 @@ int game(sf::RenderWindow &window, Settings& settings)
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{	
-				Sleep(400);
-				return 0;
+				Button play(sf::Vector2f(380.f, 100.f), sf::Color::Blue, CONTINUE, sf::Color::White, 62, font);
+				play.SetPos(sf::Vector2f(110.f, 200.f));
+
+				Button exit(sf::Vector2f(380.f, 100.f), sf::Color::Blue, MENU, sf::Color::White, 62, font);
+				exit.SetPos(sf::Vector2f(110.f, 305.f), sf::Vector2f(210.f, 315.f));
+
+				sf::RectangleShape body(sf::Vector2f(600.f, 600.f));
+				body.setFillColor(sf::Color(0, 0, 0, 160));
+
+				bool pause = true;
+				while (window.isOpen() && pause)
+				{
+					sf::Event event;
+					while (window.pollEvent(event))
+					{
+						if (event.type == sf::Event::Closed)
+						{
+							window.close();
+							return 1;
+						}
+					}
+
+
+					if (play.isMouseOn(window))
+					{
+						play.body.setFillColor(sf::Color::Magenta);
+						if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+							pause = false;
+					}
+					else
+						play.body.setFillColor(sf::Color::Blue);
+
+					if (exit.isMouseOn(window))
+					{
+						exit.body.setFillColor(sf::Color::Magenta);
+						if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+						{
+							Sleep(400);
+							return 0;
+						}
+					}
+					else
+						exit.body.setFillColor(sf::Color::Blue);
+
+					window.clear();
+					player.render(window);
+					walls.render(window);
+					fruit.render(window);
+					window.draw(score);
+					window.draw(scorec);
+					window.draw(body);
+					play.render(window);
+					exit.render(window);
+					window.display();
+				}
+				clock.restart();
+				while (clock.getElapsedTime().asSeconds() <= 1)
+				{
+					window.clear();
+					player.render(window);
+					walls.render(window);
+					fruit.render(window);
+					window.draw(score);
+					window.draw(scorec);
+					window.display();
+				}
 			}
 		}
 
