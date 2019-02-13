@@ -6,6 +6,9 @@
 #include "Settings.h"
 #include "Walls.h"
 
+//Name and version
+#define NAME L"Змейка v1.7"
+
 //true - play
 //false - exit
 bool menu(sf::RenderWindow &window, Settings& settings)
@@ -97,7 +100,7 @@ bool menu(sf::RenderWindow &window, Settings& settings)
 	// select the font
 	title.setFont(font); // font is a sf::Font
 	// set the string to display
-	title.setString(L"Змейка v1.6");
+	title.setString(NAME);
 	// set the character size
 	title.setCharacterSize(80); // in pixels, not points!
 	// set the color
@@ -631,8 +634,8 @@ int game(sf::RenderWindow &window, Settings& settings)
 			}
 		}
 
-		if (counter <= 12750)
-			go_text.setFillColor(sf::Color(255, 255, 255, counter++ / 50));
+		if (clock.getElapsedTime().asSeconds() <= 3)
+			go_text.setFillColor(sf::Color(255, 255, 255, clock.getElapsedTime().asSeconds() * 85));
 
 		window.clear();
 		player.render(window);
